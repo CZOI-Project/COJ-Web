@@ -1,0 +1,14 @@
+site_name: COJ Docs
+site_url: http://127.0.0.1:8000
+theme:
+  name: material
+  language: zh
+  palette:
+    primary: teal
+    accent: teal
+  features:
+    - navigation.instant
+    - navigation.tabs
+nav:
+  - 概览: index.md
+  - 实体: pojo.md
