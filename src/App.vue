@@ -173,7 +173,7 @@
       <v-divider></v-divider>
       <v-card-actions>
         <v-spacer></v-spacer>
-        <v-btn color="black darken-1" text @click="globalStore.error_message.show = false">
+        <v-btn color="black darken-1" @click="globalStore.error_message.show = false">
           关闭
         </v-btn>
       </v-card-actions>

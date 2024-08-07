@@ -3,7 +3,7 @@
     <div class="main">
       <div class="mdui-typo-headline">状态信息</div>
       <v-row dense class="mdui-m-t-2">
-        <v-col cols="12" sm="6" v-for="(judger, index) in data">
+        <v-col cols="12" sm="6" v-for="(judger, index) in data" :key="judger.jid">
           <v-card>
             <v-card-item :title="judger.name">
               <template v-slot:subtitle>
@@ -163,7 +163,7 @@
             </tr>
             </thead>
             <tbody>
-            <tr v-for="(robot,index2) in data[select].robots">
+            <tr v-for="(robot,index2) in data[select].robots" :key="robot.uuid">
               <td>{{ index2 + 1 }}</td>
               <td>{{ robot.username }}</td>
               <td>{{ robot.uuid }}</td>

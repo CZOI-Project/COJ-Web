@@ -6,7 +6,7 @@
     </button>
 </template>
 
-<script setup lang="ts" name="coj-button">
+<script setup lang="ts" name="COJButton">
     import {onMounted} from 'vue'
     defineProps(['loading'])
 </script>
