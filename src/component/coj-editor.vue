@@ -2,12 +2,12 @@
   <v-row dense v-if="props.hide==false">
     <v-col cols="12" sm="6">
       <code-mirror
-          v-model="now"
-          basic
-          wrap
-          :lang="markdown()"
-          class="limit"
-          tab
+        v-model="now"
+        basic
+        wrap
+        :lang="markdown()"
+        class="limit"
+        tab
       />
     </v-col>
     <v-col cols="12" sm="6">
@@ -21,8 +21,8 @@
 
 <script setup lang="ts" name="Editor">
 import CodeMirror from 'vue-codemirror6';
-import {nextTick, onMounted, ref, watch} from "vue";
-import {markdown} from "@codemirror/lang-markdown";
+import { nextTick, onMounted, Ref, ref, watch } from "vue";
+import { markdown } from "@codemirror/lang-markdown";
 import markdownit from "markdown-it";
 import markdownItKatex from 'markdown-it-katex';
 import katex from 'katex';
@@ -63,7 +63,7 @@ const md = markdownit()
             return '<pre class="hljs"><code>' +
                 html +
                 '</code></pre>'
-          } catch (__) {}
+          } catch (err) {console.error(err)}
         }
         // 未添加代码语言，此处与上面同理
         const preCode = md.utils.escapeHtml(str)
@@ -96,7 +96,7 @@ md.renderer.rules.table_close = function (tokens, idx, options, env, self) {
 const emit = defineEmits(['update:modelValue']);
 const now = ref(props.modelValue);
 const html = ref("");
-const preview: any = ref(null);
+const preview: Ref = ref(null);
 
 function copyToClipboard(text: string) {
   navigator.clipboard.writeText(text).then(() => {}, err => {
@@ -106,6 +106,7 @@ function copyToClipboard(text: string) {
 
 function addCopyHandlers() {
   const copyButtons = preview.value.querySelectorAll('.coj-copy');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   copyButtons.forEach((button: any) => {
     button.addEventListener('click', () => {
       const textToCopy = button.getAttribute("data");

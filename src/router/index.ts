@@ -1,88 +1,90 @@
-import {createRouter, createWebHistory} from 'vue-router'
-import Home from '@/view/Home.vue'
-import Problem from '@/view/Problem.vue'
-import Contest from '@/view/Contest.vue'
-import Training from '@/view/Training.vue'
-import Record from '@/view/Record.vue'
-import Login from '@/view/user/Login.vue'
-import Register from '@/view/user/Register.vue'
-import Forget from '@/view/user/Forget.vue'
-import Verify from '@/view/user/Verify.vue'
-import ProblemDetail from '@/view/ProblemDetail.vue'
+import { createRouter, createWebHistory } from 'vue-router'
 import request from '@/api'
-import {COJConfig} from '@/config'
-import {useGlobalStore} from "@/store/global";
+import { useGlobalStore } from "@/store/global";
+import { NotNeedVerify,NotNeedLogin } from '@/config/index';
 
 const router = createRouter({
     history: createWebHistory(),
     routes: [
         {
             path: '/',
-            component: Home
+            component: () => import('@/view/HomeView.vue'),
+            name: 'home'
         },
         {
             path: '/error',
-            component: () => import('@/view/ErrorPage.vue')
+            component: () => import('@/view/ErrorPage.vue'),
+            name: 'error'
         },
         {
             path: '/user/login',
-            component: Login,
-            name: "login"
+            component: () => import("@/view/user/LoginView.vue"),
+            name: "user_login"
         },
         {
             path: '/user/detail/:uid',
-            component: () => import('@/view/user/User.vue')
+            component: () => import('@/view/user/UserDetail.vue'),
+            name: 'user_detail'
         },
         {
             path: '/user/register',
-            component: Register,
-            name: "register"
+            component: () => import('@/view/user/RegisterView.vue'),
+            name: "user_register"
         },
         {
             path: '/user/forget',
-            component: Forget,
-            name: "forget"
+            component: () => import('@/view/user/ForgetView.vue'),
+            name: "user_forget"
         },
         {
             path: '/user/verify',
-            component: Verify,
-            name: "verify"
+            component: () => import('@/view/user/VerifyView.vue'),
+            name: "user_verify"
         },
         {
             path: '/problem',
-            component: Problem
+            component: () => import('@/view/problem/ProblemList.vue'),
+            name: 'problem_list'
         },
         {
             path: '/problem/detail/:pid',
-            component: ProblemDetail
+            component:() => import('@/view/problem/ProblemDetail.vue'),
+            name: 'problem_detail'
         },
         {
             path: '/problem/update/:pid',
-            component: () => import('@/view/ProblemUpdate.vue'),
+            component: () => import('@/view/problem/ProblemUpdate.vue'),
+            name: 'problem_update'
         },
         {
             path: '/contest',
-            component: Contest
+            component: () => import('@/view/contest/ContestList.vue'),
+            name: 'contest_list'
         },
         {
             path: '/training',
-            component: Training
+            component: () => import('@/view/TrainingList.vue'),
+            name: 'training_list'
         },
         {
             path: '/record',
-            component: Record
+            component: () => import('@/view/record/RecordList.vue'),
+            name: 'record_list'
         },
         {
             path: '/record/detail/:rid',
-            component: () => import('@/view/RecordDetail.vue')
+            component: () => import('@/view/record/RecordDetail.vue'),
+            name: 'record_detail'
         },
         {
             path: '/setting',
-            component: () => import('@/view/Setting.vue'),
+            component: () => import('@/view/SettingView.vue'),
+            name: 'setting'
         },
         {
             path: '/state',
-            component: () => import('@/view/State.vue')
+            component: () => import('@/view/StateView.vue'),
+            name: 'state'
         },
         {
             path: '/404',
@@ -97,17 +99,19 @@ const router = createRouter({
     ]
 })
 
-router.beforeEach(async (to, from) => {
-    let globalStore = useGlobalStore();
+router.beforeEach(async (to) => {
+    const globalStore = useGlobalStore();
     globalStore.loading = true;
-    let flag = false;
+    // console.log(to);
     try {
-        let type: number = await request.get("/user/ping");
-        if (type == 0 && !COJConfig.notNeedLogin.includes(to.name)) {
-            return "/user/login";
-        }
-        if (type == 1 && !COJConfig.notNeedVerify.includes(to.name)) {
-            return "/user/verify";
+        const type: number = await request.get("/user/ping");
+        if(to.name != undefined){
+            if (type == 0 && !NotNeedLogin.includes(to.name.toString())) {
+                return "/user/login";
+            }
+            if (type == 1 && !NotNeedVerify.includes(to.name.toString())) {
+                return "/user/verify";
+            }
         }
     } catch (err) {
         console.log(err)
@@ -116,9 +120,9 @@ router.beforeEach(async (to, from) => {
     return true;
 })
 
-router.afterEach(async (to, from) => {
+router.afterEach(async () => {
     //NProgress.done();
-    let globalStore = useGlobalStore();
+    const globalStore = useGlobalStore();
     globalStore.loading = false;
 })
 

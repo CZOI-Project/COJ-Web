@@ -5,7 +5,7 @@
     </div>
 </template>
 
-<script setup lang="ts" name="NotFound">
+<script setup lang="ts" name="NotFoundPage">
 
 </script>
 

@@ -8,6 +8,7 @@ import { createVuetify } from 'vuetify'
 import * as components from 'vuetify/components'
 import * as directives from 'vuetify/directives'
 import '@mdi/font/css/materialdesignicons.css'
+import 'vue3-calendar-heatmap/dist/style.css'
 
 const lightTheme = {
     dark: false,

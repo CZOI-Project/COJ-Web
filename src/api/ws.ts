@@ -1,6 +1,23 @@
 import { useUserStore } from "@/store/user";
 import { useGlobalStore } from "@/store/global";
-import {COJConfig} from "@/config";
+import { WS } from "@/config";
+
+export interface WSResult{
+    event: string;
+    option: string;
+    target: string;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any;
+    time: number;
+}
+
+interface WSRequest{
+    event: string;
+    option: string;
+    target: string;
+}
+
+type WSCallback = (obj: WSResult) => void;
 
 //建立websocket连接
 export const connect = async () => {
@@ -14,7 +31,7 @@ export const connect = async () => {
                 return;
             }
             // 然后尝试连接并挂载事件
-            const socket = new WebSocket(COJConfig.ws + "/" + userStore.token);
+            const socket = new WebSocket(WS + "/" + userStore.token);
             socket.onopen = () => {
                 globalStore.ws.isConnected = true;
                 console.log("Connected");
@@ -27,16 +44,16 @@ export const connect = async () => {
                 });
             }
             socket.onmessage = (e) => {
-                let obj = JSON.parse(e.data);
+                const obj: WSResult = JSON.parse(e.data);
                 const globalStore = useGlobalStore();
                 let o;
-                if(obj.event == "robot"){
-                    o = obj.event;
+                if(obj.event == "judger"){
+                    o = obj.event; // 无target
                 }else{
                     o = obj.event + obj.target;
                 }
                 if(globalStore.ws.events.has(o)){
-                    let f = globalStore.ws.events.get(o);
+                    const f: WSCallback = globalStore.ws.events.get(o);
                     f(obj);
                 }
             }
@@ -58,11 +75,11 @@ export function disConnect() {
 }
 
 // 注册事件
-export function subscribe(event: string, target: string, callback: Function) {
+export function subscribe(event: string, target: string, callback: WSCallback) {
     const globalStore = useGlobalStore();
     if(!globalStore.ws.isConnected) return;
     globalStore.ws.events.set(event + target, callback);
-    let obj = { event: "subscribe", option: event, target: target }
+    const obj: WSRequest = { event: "subscribe", option: event, target: target }
     console.log(obj);
     globalStore.ws.socket.send(JSON.stringify(obj));
 }
@@ -73,7 +90,7 @@ export function cancel_subscribe(event: string, target: string) {
     if(!globalStore.ws.isConnected) return;
     if(globalStore.ws.events.has(event + target)){
         globalStore.ws.events.delete(event + target);
-        let obj = { event: "cancel_subscribe", option: event, target: target }
+        const obj: WSRequest = { event: "cancel_subscribe", option: event, target: target }
         globalStore.ws.socket.send(JSON.stringify(obj));
     }
 }

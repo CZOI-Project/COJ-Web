@@ -1,0 +1,289 @@
+.coj-difficulty-0 {
+  color: rgb(191, 191, 191);
+}
+
+.coj-difficulty-1 {
+  color: rgb(254, 76, 97);
+}
+
+.coj-difficulty-2 {
+  color: rgb(243, 156, 17);
+}
+
+.coj-difficulty-3 {
+  color: rgb(255, 193, 22);
+}
+
+.coj-difficulty-4 {
+  color: rgb(82, 196, 26);
+}
+
+.coj-difficulty-5 {
+  color: rgb(52, 152, 219);
+}
+
+.coj-difficulty-6 {
+  color: rgb(157, 61, 207);
+}
+
+.coj-difficulty-7 {
+  color: rgb(14, 29, 105);
+}
+
+.coj-difficulty-10 {
+  background-color: rgb(191, 191, 191);
+  color: white;
+}
+
+.coj-difficulty-11 {
+  background-color: rgb(254, 76, 97);
+  color: white;
+}
+
+.coj-difficulty-12 {
+  background-color: rgb(243, 156, 17);
+  color: white;
+}
+
+.coj-difficulty-13 {
+  background-color: rgb(255, 193, 22);
+  color: white;
+}
+
+.coj-difficulty-14 {
+  background-color: rgb(82, 196, 26);
+  color: white;
+}
+
+.coj-difficulty-15 {
+  background-color: rgb(52, 152, 219);
+  color: white;
+}
+
+.coj-difficulty-16 {
+  background-color: rgb(157, 61, 207);
+  color: white;
+}
+
+.coj-difficulty-17 {
+  background-color: rgb(14, 29, 105);
+  color: white;
+}
+
+/*0*/
+.coj-waiting {
+  background-color: rgb(220, 220, 220);
+}
+
+/*1*/
+.coj-judging {
+  background-color: rgb(220, 220, 220);
+}
+
+/*2*/
+.coj-ac {
+  background-color: rgb(82, 196, 26);
+  color: white;
+}
+
+/*3*/
+.coj-wa {
+  background-color: rgb(231, 76, 60);
+  color: white;
+}
+
+/*4*/
+.coj-tle {
+  background-color: rgb(5, 34, 66);
+  color: white;
+}
+
+/*5*/
+.coj-mle {
+  background-color: rgb(5, 34, 66);
+  color: white;
+}
+
+/*6*/
+.coj-re {
+  background-color: rgb(157, 61, 207);
+  color: white;
+}
+
+/*7*/
+.coj-uke {
+  background-color: black;
+  color: white;
+}
+
+/*8*/
+.coj-pc {
+  background-color: rgb(96, 125, 139);
+  color: white;
+}
+
+/*9*/
+.coj-se {
+  background-color: rgb(255, 64, 129);
+  color: white;
+}
+
+/*10*/
+.coj-ce {
+  background-color: rgb(250, 219, 20);
+  color: white;
+}
+
+div .v-list-item-subtitle {
+  font-size: 12px !important;
+}
+
+.cm-content.cm-lineWrapping {
+  cursor: text;
+}
+
+.coj-markdown>p {
+  text-indent: 2ch;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+.coj-markdown h1::before {
+  content: '\3010';
+}
+
+.coj-markdown h1::after {
+  content: '\3011';
+}
+
+.coj-markdown h1 {
+  font-size: 18px;
+  margin-top: 30px;
+  margin-bottom: 10px;
+  text-indent: 0.5ch;
+}
+
+.coj-markdown>h1:first-child {
+  margin-top: 10px;
+}
+
+.coj-markdown code ol {
+  margin-left: 10px !important;
+}
+
+.coj-markdown strong {
+  text-emphasis: dot;
+  text-emphasis-position: under;
+
+  -webkit-text-emphasis: dot;
+  -webkit-text-emphasis-position: under;
+}
+
+.coj-markdown table {
+  border-collapse: collapse;
+  border-top: 4px solid black;
+  border-bottom: 4px solid black;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.coj-markdown td,
+.coj-markdown th {
+  border: 1px solid black;
+  padding: 2px;
+  text-align: center;
+  vertical-align: middle;
+}
+
+.coj-markdown th {
+  border-bottom: 2px solid black;
+  font-weight: normal;
+}
+
+.coj-markdown td:first-child,
+th:first-child {
+  border-left: none;
+  /* 移除第一列单元格的左边框 */
+}
+
+.coj-markdown td:last-child,
+th:last-child {
+  border-right: none;
+  /* 移除最后一列单元格的右边框 */
+}
+
+.coj-markdown .coj-table-container {
+  margin-left: 20px;
+  margin-right: 20px;
+  overflow-x: scroll;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.coj-markdown ul ul ul {
+  list-style-type: square;
+}
+
+.coj-markdown ul ul {
+  list-style-type: circle;
+}
+
+.coj-markdown ul {
+  list-style-type: disc;
+  margin-left: 32px;
+}
+
+.coj-markdown ol {
+  list-style-type: decimal;
+  margin-left: 15px;
+}
+
+.coj-markdown {
+  padding-right: 10px;
+  padding-left: 10px;
+  line-height: 25px;
+}
+
+.coj-markdown code li {
+  line-height: 18px;
+}
+
+/* 在全局样式文件中添加 */
+.no-scroll {
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+}
+
+.coj-suitable2 {
+  margin-top: -200px;
+}
+
+.coj-suitable1 {
+  margin-top: -100px;
+}
+
+.coj-suitable06 {
+  margin-top: -60px;
+}
+
+.coj-clearfix::after {
+  content: '';
+  display: block;
+  clear: both;
+}
+
+.coj-main{
+  padding-top: 10px;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.coj-min-250 {
+  min-width: 250px;
+}
+
+.coj-min-300 {
+  min-width: 300px;
+}
